@@ -1,17 +1,17 @@
 import { InternalAxiosRequestConfig } from 'axios';
-import { authUser } from './utils/authUser';
-import { registrUser } from './utils/registrUser';
-import { logoutUser } from './utils/logoutUser';
+import { loginUser } from './lib/utils/loginUser.ts';
+import { signupUser } from './lib/utils/signupUser.ts';
+import { logoutUser } from './lib/utils/logoutUser.ts';
 
 export const clientApi = (config: InternalAxiosRequestConfig) => {
   const prepareAuthUrl = config.url!.replace('/api/auth', '');
 
   switch (prepareAuthUrl) {
     case '/authentication':
-      config.adapter = () => authUser(config);
+      config.adapter = () => loginUser(config);
       break;
     case '/registration':
-      config.adapter = () => registrUser(config);
+      config.adapter = () => signupUser(config);
       break;
     case '/logout':
       config.adapter = () => logoutUser(config);

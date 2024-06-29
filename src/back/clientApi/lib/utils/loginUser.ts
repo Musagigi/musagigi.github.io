@@ -1,15 +1,8 @@
 import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { getCurrentDateTime } from '../../../shared/utils/getCurrentDateTime'
+import { getCurrentDateTime } from '../../../../shared/utils/getCurrentDateTime';
+import { TUserCredentials } from '../types/types';
 
-type TGetAuth = Array<{
-  email: string;
-  firstName: string;
-  lastName: string;
-  login: string;
-  password: string;
-}>;
-
-export const authUser = (
+export const loginUser = (
   config: InternalAxiosRequestConfig,
 ): Promise<AxiosResponse> => {
   return new Promise((resolve, reject) => {
@@ -31,7 +24,7 @@ export const authUser = (
     }
 
     if (data !== null) {
-      const parseData: TGetAuth = JSON.parse(data);
+      const parseData: TUserCredentials = JSON.parse(data);
       const isUserData = parseData.find((user) => user.email === email);
 
       if (!isUserData?.email) {
