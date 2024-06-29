@@ -1,14 +1,7 @@
 import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { TUserCredentials } from '../types/types';
 
-type TGetAuth = Array<{
-  email: string;
-  firstName: string;
-  lastName: string;
-  login: string;
-  password: string;
-}>;
-
-export const registrUser = (
+export const signupUser = (
   config: InternalAxiosRequestConfig,
 ): Promise<AxiosResponse> => {
   return new Promise((resolve, reject) => {
@@ -16,7 +9,7 @@ export const registrUser = (
     const data = localStorage.getItem('usersDataRegistr');
 
     if (data !== null) {
-      const parseData: TGetAuth = JSON.parse(data);
+      const parseData: TUserCredentials = JSON.parse(data);
       const isEmailUser = parseData.find((user) => user.email === email);
 
       if (isEmailUser) {

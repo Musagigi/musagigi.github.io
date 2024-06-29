@@ -5,7 +5,7 @@ import { CircularProgress } from '@mui/material';
 
 import { App } from 'app/App';
 import { LoginPage } from 'pages/LoginPage';
-import { ProtectedRotue } from './ProtectedRotue';
+import { ProtectedRoute } from './ProtectedRoute';
 
 import { NAV_NOT_AUTH_USER, HEADER_NAV_AUTH_USER } from './constans';
 
@@ -36,25 +36,25 @@ export const routes = createBrowserRouter([
       {
         path: HEADER_NAV_AUTH_USER.main.path,
         element: (
-          <ProtectedRotue>
+          <ProtectedRoute>
             <MainPage />
-          </ProtectedRotue>
+          </ProtectedRoute>
         ),
       },
       {
         path: HEADER_NAV_AUTH_USER.favorite.path,
         element: (
-          <ProtectedRotue>
+          <ProtectedRoute>
             <FavoritePage />
-          </ProtectedRotue>
+          </ProtectedRoute>
         ),
       },
       {
         path: HEADER_NAV_AUTH_USER.robotGeneration.path,
         element: (
-          <ProtectedRotue>
+          <ProtectedRoute>
             <RobotGenerationPage />
-          </ProtectedRotue>
+          </ProtectedRoute>
         ),
       },
     ],

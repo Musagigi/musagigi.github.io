@@ -6,15 +6,15 @@ import { currentTokenSelector } from 'app/store/selectors/currentTokenSelector';
 
 import { PATH_NOT_AUTH_USER } from './constans';
 
-type TProtectedRotue = {
+type TProtectedRoute = {
   children: React.ReactNode;
   redirectPath?: string;
 };
 
-export const ProtectedRotue = ({
+export const ProtectedRoute = ({
   children,
   redirectPath = PATH_NOT_AUTH_USER,
-}: TProtectedRotue) => {
+}: TProtectedRoute) => {
   const token = useAppSelector(currentTokenSelector);
 
   return token ? (
