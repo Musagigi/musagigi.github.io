@@ -1,0 +1,1 @@
+import{j as e,B as t,k as a}from"./index-CyYl4JMC.js";const n={display:"flex",flexDirection:"column",width:"100%",height:"100%",alignItems:"center",gap:"20px"},o={mt:"20px",padding:"20px"},i=()=>e.jsx(t,{sx:n,children:e.jsx(a,{component:"h2",variant:"h4",sx:o,children:"Избранное"})});export{i as default};
