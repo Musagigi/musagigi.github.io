@@ -1,5 +1,7 @@
 import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+
 import { getCurrentDateTime } from '../../../../shared/utils/getCurrentDateTime';
+
 import { TUserCredentials } from '../types/types';
 
 export const loginUser = (

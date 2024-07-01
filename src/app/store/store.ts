@@ -12,10 +12,14 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authTokenReducer from './slices/authTokenSlice';
 import usersDataRegistrReducer from './slices/usersDataRegistrSlice';
+import cardsSliceReducer from './slices/сardsSlice';
+import combinatoricListReducer from './slices/combinatoricListSlice';
 
 const rootReducer = combineReducers({
   userToken: authTokenReducer,
   usersDataRegistr: usersDataRegistrReducer,
+  cards: cardsSliceReducer,
+  comboList: combinatoricListReducer,
 });
 
 const persistConfig = {

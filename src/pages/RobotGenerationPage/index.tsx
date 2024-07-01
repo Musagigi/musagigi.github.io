@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
 
 import { boxPage, pageTitle } from './styles';
+import { RobotGenerationControlPanel } from 'widgets/RobotGenerationControlPanel';
+import { RobotCardsList } from 'widgets/RobotCardsList';
 
 const RobotGenerationPage = () => {
   return (
@@ -12,6 +14,8 @@ const RobotGenerationPage = () => {
       >
         Генерация роботов
       </Typography>
+      <RobotGenerationControlPanel />
+      <RobotCardsList />
     </Box>
   );
 };

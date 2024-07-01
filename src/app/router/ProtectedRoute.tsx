@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
+
 import { useAppSelector } from '../store/hooks';
 import { currentTokenSelector } from 'app/store/selectors/currentTokenSelector';
 
