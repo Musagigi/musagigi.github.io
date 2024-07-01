@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Avatar, Box } from '@mui/material';
+
 import { CustomMenu } from '../CustomMenu';
 import { logoutApi } from '../../api/logoutApi';
 import { DownloadModal } from '../../../../shared/ui/DownloadModal';
-import { TMenuNav } from '../../lib/types';
 import { useLogout } from '../../../../shared/hooks/useLogout';
 import { CommonButton } from '../../../../shared/ui/Buttons/CommonButton';
+
 import { TOKEN } from '../../../../shared/lib/constans';
+import { TMenuNav } from '../../lib/types';
 import { menuItem } from './styles';
 
 export const UserMenu = ({ menuNav }: TMenuNav) => {
@@ -39,7 +41,7 @@ export const UserMenu = ({ menuNav }: TMenuNav) => {
           sx={menuItem}
         >
           <CommonButton
-            textForBtn='Выйти'
+            textForBtn="Выйти"
             variant="text"
             fullWidth
           />

@@ -36,4 +36,4 @@ export const USER_MEUN_NAV = {
     path: '/account',
     name: 'аккаунт',
   },
-}
+};
