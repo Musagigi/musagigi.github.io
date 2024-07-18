@@ -5,10 +5,8 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/project01/',
   resolve: {
     alias: {
-      // src: path.resolve(__dirname, '/src'),
       app: path.resolve(__dirname, '/src/app'),
       back: path.resolve(__dirname, '/src/back'),
       features: path.resolve(__dirname, '/src/features'),
