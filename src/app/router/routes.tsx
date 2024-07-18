@@ -10,11 +10,9 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { NAV_NOT_AUTH_USER, HEADER_NAV_AUTH_USER } from './constans';
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
-const MainPage = lazy(() => import('../../pages/MainPage'));
-const FavoritePage = lazy(() => import('../../pages/FavoritePage'));
-const RobotGenerationPage = lazy(
-  () => import('../../pages/RobotGenerationPage'),
-);
+const MainPage = lazy(() => import('pages/MainPage'));
+const FavoritePage = lazy(() => import('pages/FavoritePage'));
+const RobotGenerationPage = lazy(() => import('pages/RobotGenerationPage'));
 
 const suspense = (page: React.ReactNode, fallback = <CircularProgress />) => (
   <Suspense fallback={fallback}>{page}</Suspense>

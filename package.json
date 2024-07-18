@@ -1,7 +1,7 @@
 {
   "name": "project01",
   "private": true,
-  "homepage": "https://musagigi.github.io/project01/",
+  "homepage": "https://musagigi.github.io/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,8 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
