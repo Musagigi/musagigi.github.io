@@ -1,7 +1,7 @@
 {
   "name": "project01",
   "private": true,
-  "homepage": "https://musagigi.github.io/",
+  "homepage": "https://musagigi.github.io/project01/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
