@@ -1,0 +1,1 @@
+import{j as t,B as e,O as o}from"./index-0Rch11Kx.js";const s={display:"flex",flexDirection:"column",rowGap:"40px",height:"100%",width:"100%"},a=()=>t.jsx(e,{sx:s,children:t.jsx(o,{})});export{a as default};
