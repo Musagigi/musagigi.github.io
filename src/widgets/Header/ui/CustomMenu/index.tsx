@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Box, IconButton, Menu } from '@mui/material';
+
 import { ButtonRouter } from '../../../../shared/ui/Buttons/ButtonRouter';
-import { TUserMenu } from '../../lib/types';
+
+import { TUserMenu } from './types';
 import { boxMenu } from './styles';
 
 export const CustomMenu = ({
-  menuNav,
+  menuPages,
   children,
   menuIcon,
   title = 'Меню',
@@ -35,7 +37,7 @@ export const CustomMenu = ({
         open={Boolean(anchorElNav)}
         onClose={handleCloseNavMenu}
       >
-        {menuNav?.map((page) => (
+        {menuPages?.map((page) => (
           <Box
             component="li"
             key={page.name}

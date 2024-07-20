@@ -1,4 +1,7 @@
-import { TWordList } from '../types';
+type TWordList = {
+  key: number | string;
+  text: string;
+};
 
 export const getPermutation = (words: TWordList[]) => {
   const result: Array<string> = [];
@@ -12,7 +15,7 @@ export const getPermutation = (words: TWordList[]) => {
     } else {
       for (let i = 0; i < remainingWords.length; i++) {
         const word = remainingWords[i];
-        const newRemainingWords = remainingWords.filter((_, j) => i !== j);
+        const newRemainingWords = remainingWords.filter((w, j) => i !== j);
         recursive([...currentCombination, word], newRemainingWords);
       }
     }

@@ -1,9 +1,9 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Navigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
 import { useAppSelector } from '../store/hooks';
-import { currentTokenSelector } from 'app/store/selectors/currentTokenSelector';
+import { currentTokenSelector } from '../store/selectors/currentTokenSelector';
 
 import { PATH_NOT_AUTH_USER } from './constans';
 

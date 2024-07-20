@@ -1,13 +1,14 @@
 import { Box } from '@mui/material';
+
 import { ButtonRouter } from '../../../../shared/ui/Buttons/ButtonRouter';
 
-import { TMenuNav } from '../../lib/types';
-import { menuNavStyles } from './styles';
+import { TPages } from 'widgets/Header/lib/types';
+import { menuNav } from './styles';
 
-export const HorizontalMenu = ({ menuNav }: TMenuNav) => {
+export const HorizontalMenu = ({ menuPages }: TPages) => {
   return (
-    <Box sx={menuNavStyles}>
-      {menuNav.map((page) => (
+    <Box sx={menuNav}>
+      {menuPages.map((page) => (
         <ButtonRouter
           key={page.name}
           path={page.path}

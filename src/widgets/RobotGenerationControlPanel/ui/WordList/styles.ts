@@ -1,3 +1,11 @@
+export const addwordBox = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '10px',
+  justifyContent: 'space-between',
+  alignItems: 'stretch',
+};
+
 export const wordListBox = {
   display: 'flex',
   flexWrap: 'wrap',

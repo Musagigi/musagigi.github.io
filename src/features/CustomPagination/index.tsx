@@ -1,13 +1,17 @@
 import { Pagination, PaginationItem } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
+
 import { DownloadModal } from 'shared/ui/DownloadModal';
-import { useGetPictureCards } from './lib/hooks/useGetPictureCards';
+
+import { usePictureCardsPagination } from './lib/hooks/usePictureCardsPagination';
+
 import { pagination } from './styles';
 
 export const CustomPagination = () => {
   const location = useLocation();
 
-  const { page, setPage, pageQuantity, isDataLoaded } = useGetPictureCards();
+  const { page, setPage, pageQuantity, isDataLoaded } =
+    usePictureCardsPagination();
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { InternalAxiosRequestConfig } from 'axios';
-import { loginUser } from './lib/utils/loginUser.ts';
-import { signupUser } from './lib/utils/signupUser.ts';
-import { logoutUser } from './lib/utils/logoutUser.ts';
+import { loginUser } from './lib/utils/loginUser';
+import { signupUser } from './lib/utils/signupUser';
+import { logoutUser } from './lib/utils/logoutUser';
 
 export const clientApi = (config: InternalAxiosRequestConfig) => {
   const prepareAuthUrl = config.url!.replace('/api/auth', '');

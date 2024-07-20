@@ -1,21 +1,12 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
-import { boxPage, pageTitle } from './styles';
-import { RobotGenerationControlPanel } from 'widgets/RobotGenerationControlPanel';
-import { RobotCardsList } from 'widgets/RobotCardsList';
+import { boxPage } from './styles';
 
 const RobotGenerationPage = () => {
   return (
     <Box sx={boxPage}>
-      <Typography
-        component="h2"
-        variant="h4"
-        sx={pageTitle}
-      >
-        Генерация роботов
-      </Typography>
-      <RobotGenerationControlPanel />
-      <RobotCardsList />
+      <Outlet />
     </Box>
   );
 };

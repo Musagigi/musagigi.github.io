@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Avatar, Box } from '@mui/material';
 
+import { DownloadModal } from 'shared/ui/DownloadModal';
+import { CommonButton } from 'shared/ui/Buttons/CommonButton';
 import { CustomMenu } from '../CustomMenu';
-import { logoutApi } from '../../api/logoutApi';
-import { DownloadModal } from '../../../../shared/ui/DownloadModal';
-import { useLogout } from '../../../../shared/hooks/useLogout';
-import { CommonButton } from '../../../../shared/ui/Buttons/CommonButton';
 
-import { TOKEN } from '../../../../shared/lib/constans';
-import { TMenuNav } from '../../lib/types';
+import { useLogout } from 'shared/hooks/useLogout';
+import { logoutApi } from 'widgets/Header/api/logoutApi';
+import { TPages } from 'widgets/Header/lib/types';
+import { TOKEN } from 'shared/lib/constans';
 import { menuItem } from './styles';
 
-export const UserMenu = ({ menuNav }: TMenuNav) => {
+export const UserMenu = ({ menuPages }: TPages) => {
   const [loading, setLoading] = useState(false);
   const logout = useLogout(TOKEN);
 
@@ -31,7 +31,7 @@ export const UserMenu = ({ menuNav }: TMenuNav) => {
   return (
     <>
       <CustomMenu
-        menuNav={menuNav}
+        menuPages={menuPages}
         menuIcon={<Avatar alt="Аватар пользователя" />}
         title="Меню пользователя"
       >
