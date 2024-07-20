@@ -15,7 +15,7 @@ export const getPermutation = (words: TWordList[]) => {
     } else {
       for (let i = 0; i < remainingWords.length; i++) {
         const word = remainingWords[i];
-        const newRemainingWords = remainingWords.filter((w, j) => i !== j);
+        const newRemainingWords = remainingWords.filter((_, j) => i !== j);
         recursive([...currentCombination, word], newRemainingWords);
       }
     }
