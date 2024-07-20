@@ -4,14 +4,13 @@ import SHA256 from 'crypto-js/sha256';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { useAppDispatch } from '../../../../app/store/hooks';
-import { addToken } from '../../../../app/store/slices/authTokenSlice';
-import { AppDispatch } from '../../../../app/store/store';
-
-import { loginApi } from '../../api/loginApi';
-import { registrationSchema } from '../validation';
-import { PATH_MAIN_PAGE } from '../../../../app/router/constans';
+import { addToken } from 'app/store/slices/authTokenSlice';
+import { loginApi } from 'widgets/LoginForm/api/loginApi';
+import { AppDispatch } from 'app/store/store';
+import { useAppDispatch } from 'app/store/hooks';
+import { HEADER_NAV_AUTH_USER } from 'app/router/constans';
 import { TFormField } from '../types';
+import { registrationSchema } from '../validation';
 
 type TErrorResponse = {
   status: number;
@@ -53,7 +52,7 @@ export const useLogin = () => {
 
       if (status === 200) {
         dispatch(addToken(responseData));
-        navigate(PATH_MAIN_PAGE, { replace: true });
+        navigate(HEADER_NAV_AUTH_USER.robotGeneration.path, { replace: true });
       }
     } catch (error: unknown) {
       const responseError = error as TErrorResponse;

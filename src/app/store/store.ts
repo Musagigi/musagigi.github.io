@@ -11,20 +11,27 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authTokenReducer from './slices/authTokenSlice';
-import usersDataRegistrReducer from './slices/usersDataRegistrSlice';
 import cardsSliceReducer from './slices/сardsSlice';
-import combinatoricListReducer from './slices/combinatoricListSlice';
+import usersDataRegistrReducer from './slices/usersDataRegistrSlice';
+import generatedSettingsForPanelReducer from './slices/generatedSettingsForPanel';
+import savedGeneratedSettingsForPanelReducer from './slices/savedGeneratedSettingsForPanel';
 
 const rootReducer = combineReducers({
   userToken: authTokenReducer,
   usersDataRegistr: usersDataRegistrReducer,
   cards: cardsSliceReducer,
-  comboList: combinatoricListReducer,
+  generatedSettingsForPanel: generatedSettingsForPanelReducer,
+  savedGeneratedSettingsForPanel: savedGeneratedSettingsForPanelReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: [
+    'cards',
+    'generatedSettingsForPanel',
+    'savedGeneratedSettingsForPanel',
+  ],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

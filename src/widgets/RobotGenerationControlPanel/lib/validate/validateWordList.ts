@@ -1,5 +1,3 @@
-import { TWordList } from '../../lib/types';
-
 export const validateWord = (word: string) => {
   if (word.split(' ').length > 1) {
     return 'Можно ввести только одно слово';
@@ -10,7 +8,7 @@ export const validateWord = (word: string) => {
   return null;
 };
 
-export const validateWordList = (wordList: TWordList[]) => {
+export const validateWordList = (wordList: object[]) => {
   if (wordList.length >= 5) {
     return 'Достигнут лимит слов';
   }

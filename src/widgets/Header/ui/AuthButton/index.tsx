@@ -1,4 +1,4 @@
-import { ButtonRouter } from '../../../../shared/ui/Buttons/ButtonRouter';
+import { ButtonRouter } from 'shared/ui/Buttons/ButtonRouter';
 
 type TPathInfo = {
   path: string;

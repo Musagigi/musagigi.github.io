@@ -6,11 +6,7 @@ import { ButtonFavorite } from 'shared/ui/Buttons/ButtonFavorite';
 
 import { box } from './styles';
 
-type TRobotCard = {
-  image: string;
-};
-
-export const RobotCard = ({ image }: TRobotCard) => {
+export const RobotCard = ({ image }: Record<'image', string>) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (

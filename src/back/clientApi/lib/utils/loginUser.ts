@@ -1,7 +1,6 @@
 import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-import { getCurrentDateTime } from '../../../../shared/utils/getCurrentDateTime';
-
+import { getCurrentDate } from 'shared/lib/utils/getCurrentDate';
 import { TUserCredentials } from '../types/types';
 
 export const loginUser = (
@@ -58,7 +57,7 @@ export const loginUser = (
       }
     }
 
-    const { date, time } = getCurrentDateTime();
+    const { date, time } = getCurrentDate();
 
     resolve({
       status: 200,

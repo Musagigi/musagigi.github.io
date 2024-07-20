@@ -1,5 +1,6 @@
 export const PATH_NOT_AUTH_USER = '/';
 export const PATH_MAIN_PAGE = '/main';
+export const PATH_SAVED_ROBOT_GENERATIONS = '/robot-generation/saved';
 
 export const NAV_NOT_AUTH_USER = {
   login: {
@@ -13,10 +14,6 @@ export const NAV_NOT_AUTH_USER = {
 };
 
 export const HEADER_NAV_AUTH_USER = {
-  main: {
-    path: PATH_MAIN_PAGE,
-    name: 'главная',
-  },
   favorite: {
     path: '/favorite',
     name: 'избранное',
@@ -27,7 +24,7 @@ export const HEADER_NAV_AUTH_USER = {
   },
 };
 
-export const USER_MEUN_NAV = {
+export const USER_MENU_NAV = {
   profile: {
     path: '/profile',
     name: 'профиль',

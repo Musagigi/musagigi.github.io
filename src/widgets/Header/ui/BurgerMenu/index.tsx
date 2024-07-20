@@ -3,14 +3,14 @@ import { Box } from '@mui/material';
 
 import { CustomMenu } from '../CustomMenu';
 
-import { TMenuNav } from '../../lib/types';
 import { boxMenu, iconStyle } from './styles';
+import { TPages } from 'widgets/Header/lib/types';
 
-export const BurgerMenu = ({ menuNav }: TMenuNav) => {
+export const BurgerMenu = ({ menuPages }: TPages) => {
   return (
     <Box sx={boxMenu}>
       <CustomMenu
-        menuNav={menuNav}
+        menuPages={menuPages}
         menuIcon={<MenuIcon sx={iconStyle} />}
       />
     </Box>

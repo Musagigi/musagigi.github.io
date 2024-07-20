@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -7,87 +6,113 @@ import {
   Slider,
 } from '@mui/material';
 
-import { TCombinatoricsType } from 'widgets/RobotGenerationControlPanel/lib/types';
-import { useAppDispatch } from 'app/store/hooks';
-import { setComboList } from 'app/store/slices/combinatoricListSlice';
 import { CommonButton } from 'shared/ui/Buttons/CommonButton';
-import { MIN_QUANTITY_WORD } from 'widgets/RobotGenerationControlPanel/lib/constans';
-
 import {
   getCombination,
   getPermutation,
   getPlacement,
-} from 'widgets/RobotGenerationControlPanel/lib/utils/getCombinatorics';
+} from '../../lib/utils/getCombinatorics';
+import { useAppDispatch, useAppSelector } from 'app/store/hooks';
+import {
+  setCombinatoricType,
+  setCountWordByCombinatoric,
+  setGeneratedList,
+} from 'app/store/slices/generatedSettingsForPanel';
+import { generatedSettingsForPanelSelector } from 'app/store/selectors/generatedSettingsForPanelSelector';
+import { TwoSentences } from 'shared/ui/Text/TwoSentences';
+
+import { MIN_QUANTITY_WORD } from '../../lib/constans';
 
 const COMBINATORICS = ['Перестановка', 'Размещение', 'Сочетание'];
 
-export const CombinatoricsType = ({ wordList }: TCombinatoricsType) => {
-  const [comboType, setComboType] = useState(COMBINATORICS[0]);
-  const [comboCount, setComboCount] = useState(3);
+export const CombinatoricsType = () => {
   const dispatch = useAppDispatch();
+  const generatedSettings = useAppSelector(generatedSettingsForPanelSelector);
+  const { wordList, combinatoricType, countWordByCombinatoric } =
+    generatedSettings;
 
   const handleComboList = () => {
-    switch (comboType) {
+    switch (combinatoricType) {
       case 'Перестановка':
-        dispatch(setComboList(getPermutation(wordList)));
+        dispatch(setGeneratedList(getPermutation(wordList)));
         break;
       case 'Размещение':
-        dispatch(setComboList(getPlacement(wordList, comboCount)));
+        dispatch(
+          setGeneratedList(
+            getPlacement(wordList, Number(countWordByCombinatoric)),
+          ),
+        );
         break;
       case 'Сочетание':
-        dispatch(setComboList(getCombination(wordList, comboCount)));
+        dispatch(
+          setGeneratedList(
+            getCombination(wordList, Number(countWordByCombinatoric)),
+          ),
+        );
         break;
     }
   };
 
   return (
-    <FormControl
-      fullWidth
-      sx={{ gap: 1 }}
-    >
-      <InputLabel id="demo-simple-select-label">Тип комбинаторики</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        label="Тип комбинаторики"
-        value={comboType}
-        onChange={(e) => setComboType(e.target.value)}
+    <>
+      <FormControl
+        fullWidth
+        sx={{ gap: 1 }}
       >
-        {wordList.length > 2 ? (
-          COMBINATORICS.map((item) => {
-            return (
-              <MenuItem
-                key={item}
-                value={item}
-              >
-                {item}
-              </MenuItem>
-            );
-          })
-        ) : (
-          <MenuItem
-            key={COMBINATORICS[0]}
-            value={COMBINATORICS[0]}
-          >
-            {COMBINATORICS[0]}
-          </MenuItem>
-        )}
-      </Select>
-      {comboType !== 'Перестановка' && (
-        <Slider
-          valueLabelDisplay="auto"
-          step={1}
-          marks
-          min={2}
-          max={wordList.length}
-          value={comboCount}
-          onChange={(_, value) => setComboCount(value as number)}
+        <InputLabel id="combinatoric-select-label">
+          Тип комбинаторики
+        </InputLabel>
+        <Select
+          labelId="combinatoric-select-label"
+          label="Тип комбинаторики"
+          value={combinatoricType}
+          onChange={(e) => dispatch(setCombinatoricType(e.target.value))}
+        >
+          {wordList.length > MIN_QUANTITY_WORD ? (
+            COMBINATORICS.map((item) => {
+              return (
+                <MenuItem
+                  key={item}
+                  value={item}
+                >
+                  {item}
+                </MenuItem>
+              );
+            })
+          ) : (
+            <MenuItem
+              key={COMBINATORICS[0]}
+              value={COMBINATORICS[0]}
+            >
+              {COMBINATORICS[0]}
+            </MenuItem>
+          )}
+        </Select>
+
+        {wordList.length > MIN_QUANTITY_WORD &&
+          combinatoricType !== 'Перестановка' && (
+            <Slider
+              valueLabelDisplay="auto"
+              step={1}
+              marks
+              min={2}
+              max={wordList.length}
+              value={Number(countWordByCombinatoric)}
+              onChange={(_, value) =>
+                dispatch(setCountWordByCombinatoric(value as number))
+              }
+            />
+          )}
+        <CommonButton
+          onClick={handleComboList}
+          textForBtn="комбинировать"
+          disabled={MIN_QUANTITY_WORD > wordList.length}
         />
-      )}
-      <CommonButton
-        onClick={handleComboList}
-        textForBtn="комбинировать"
-        disabled={MIN_QUANTITY_WORD > wordList.length}
+      </FormControl>
+      <TwoSentences
+        textOne="количество скомбинированных слов:"
+        textTwo={`${generatedSettings.generatedList.length}`}
       />
-    </FormControl>
+    </>
   );
 };

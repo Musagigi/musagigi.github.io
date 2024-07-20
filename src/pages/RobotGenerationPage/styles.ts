@@ -5,8 +5,3 @@ export const boxPage = {
   height: '100%',
   width: '100%',
 };
-
-export const pageTitle = {
-  mt: '60px',
-  textAlign: 'center',
-};

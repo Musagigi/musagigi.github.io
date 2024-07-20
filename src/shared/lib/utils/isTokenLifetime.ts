@@ -1,6 +1,7 @@
-import { TOKEN } from '../lib/constans';
-import { getCurrentDateTime } from './getCurrentDateTime';
+import { getCurrentDate } from './getCurrentDate';
 import { getTimeToMinutes } from './getTimeToMinutes';
+
+import { TOKEN } from '../constans';
 
 export const isTokenLifetime = () => {
   const authToken = localStorage.getItem(TOKEN);
@@ -12,7 +13,7 @@ export const isTokenLifetime = () => {
     return true;
   }
 
-  const currentDateTime = getCurrentDateTime();
+  const currentDateTime = getCurrentDate();
 
   if (currentDateTime.date > authTokenParse.date) {
     return true;

@@ -1,25 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { isTokenLifetime } from 'shared/utils/isTokenLifetime';
+import { isTokenLifetime } from 'shared/lib/utils/isTokenLifetime';
 import { useLogout } from 'shared/hooks/useLogout';
 import { useAppDispatch, useAppSelector } from 'app/store/hooks';
-import { addCard } from 'app/store/slices/сardsSlice';
-import { comboListSelector } from 'app/store/selectors/comboListSelector';
-import { imagesApi } from 'features/CustomPagination/api/imagesApi';
+import { addCards } from 'app/store/slices/сardsSlice';
 import { getPaginatedItems } from '../utils/getPaginatedItems';
+import { generatedSettingsForPanelSelector } from 'app/store/selectors/generatedSettingsForPanelSelector';
+import { imagesApi } from 'features/CustomPagination/api/imagesApi';
 
 const itemsPerPage = 9;
 
-// TODO добавить bgset
-export const useGetPictureCards = () => {
+export const usePictureCardsPagination = () => {
   const location = useLocation();
-  const comboList = useAppSelector(comboListSelector);
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const navigate = useNavigate();
+
   const [page, setPage] = useState(Number(location.search?.split('=')[1]) || 1);
   const [pageQuantity, setPageQuantity] = useState(0);
-  const navigate = useNavigate();
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
   const dispatch = useAppDispatch();
+  const generatedSettings = useAppSelector(generatedSettingsForPanelSelector);
+  const { generatedList, backgroundImage } = generatedSettings;
+
   const logout = useLogout();
 
   if (isTokenLifetime()) {
@@ -27,21 +30,23 @@ export const useGetPictureCards = () => {
   }
 
   useEffect(() => {
-    setPageQuantity(Math.ceil(comboList.length / itemsPerPage));
-  }, [comboList]);
+    setPageQuantity(Math.ceil(generatedList?.length / itemsPerPage));
 
-  useEffect(() => {
     const getImages = async () => {
       try {
         setIsDataLoaded(true);
-        const paginatedItems = getPaginatedItems(page, itemsPerPage, comboList);
+        const paginatedItems = getPaginatedItems(
+          page,
+          itemsPerPage,
+          generatedList,
+        );
 
         if (!paginatedItems.length) {
           setPage(1);
           navigate(location.pathname, { replace: true });
         } else {
           const response = await imagesApi(paginatedItems);
-          dispatch(addCard(response));
+          dispatch(addCards(response));
         }
       } catch (error) {
         console.log(error);
@@ -50,7 +55,7 @@ export const useGetPictureCards = () => {
       }
     };
     getImages();
-  }, [page, comboList]);
+  }, [page, generatedSettings]);
 
   return { page, setPage, pageQuantity, isDataLoaded };
 };
