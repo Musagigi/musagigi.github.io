@@ -21,7 +21,7 @@ export const usePictureCardsPagination = () => {
 
   const dispatch = useAppDispatch();
   const generatedSettings = useAppSelector(generatedSettingsForPanelSelector);
-  const { generatedList, backgroundImage } = generatedSettings;
+  const { generatedList } = generatedSettings;
 
   const logout = useLogout();
 
