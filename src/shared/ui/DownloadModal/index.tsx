@@ -1,10 +1,6 @@
 import { Backdrop, CircularProgress } from '@mui/material';
 
-type TDownloadModal = {
-  loading: boolean;
-};
-
-export const DownloadModal = ({ loading }: TDownloadModal) => {
+export const DownloadModal = ({ loading }: Record<'loading', boolean>) => {
   return (
     <Backdrop
       open={loading}

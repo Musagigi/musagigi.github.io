@@ -27,7 +27,7 @@ export const SettingPanelWithCards = () => {
     <>
       <TitleForPage text="Генерация роботов" />
       <RobotGenerationControlPanel keyForLocalStorage="currentGeneratedSettings" />
-      <RobotCardsList />
+      <RobotCardsList keyForLocalStorage="currentGeneratedSettings" />
     </>
   );
 };

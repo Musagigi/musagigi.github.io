@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const imagesApi = async (data: string[]) => {
+export const imagesApi = async (data: string[]): Promise<string[]> => {
   const images = [];
 
   for (const combo of data) {
