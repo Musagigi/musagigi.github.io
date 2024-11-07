@@ -9,29 +9,31 @@ import { QueryParameterError } from 'shared/ui/ErrorsMessage/QueryParameterError
 import { TitleForPage } from 'shared/ui/Text/TitleForPage';
 
 import { getListSavedSettings } from 'shared/api/listSavedGeneratedSettingsForPanel/getListSavedSettings';
-import { useAppDispatch } from 'app/store/hooks';
-import { replaceGeneratedSettings } from 'app/store/slices/generatedSettingsForPanel';
 import { isNumberQueryParameter } from 'shared/lib/utils/isNumberQueryParameter';
 import { PATH_SAVED_ROBOT_GENERATIONS } from 'app/router/constans';
+import { useAppDispatch } from 'app/store/hooks';
+import { replaceGeneratedSettings } from 'app/store/slices/generatedSettingsForPanel';
 
 export const SelectedSavedSettingsPanel = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const { id } = params as Record<'id', string>;
   const listSaved = getListSavedSettings();
+  const selectedSavedSettings = getSelectedSavedSetting(listSaved, +id);
+
+  const dispatch = useAppDispatch();
+  dispatch(replaceGeneratedSettings(selectedSavedSettings));
+
+  console.log('renderSelectedSavedSettingsPanel');
 
   useEffect(() => {
     if (isNumberQueryParameter(id)) return;
 
     if (Number(id) > listSaved.length) {
       navigate(`${PATH_SAVED_ROBOT_GENERATIONS}/0`, { replace: true });
-    } else {
-      const selectedSavedSettings = getSelectedSavedSetting(listSaved, +id);
-      dispatch(replaceGeneratedSettings(selectedSavedSettings));
     }
-  }, [params]);
+  }, []);
 
   if (isNumberQueryParameter(id)) {
     return <QueryParameterError errorParam={id} />;
@@ -42,7 +44,7 @@ export const SelectedSavedSettingsPanel = () => {
       {listSaved.length > 0 ? (
         <>
           <TitleForPage text="Сгенерированные сохраненные настройки" />
-          <RobotGenerationControlPanel keyForLocalStorage="selectedSavedGeneratedSettings" />
+          <RobotGenerationControlPanel settingsPanel={selectedSavedSettings} />
           <RobotCardsList />
         </>
       ) : (

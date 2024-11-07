@@ -7,7 +7,6 @@ import { useLogin } from './lib/hooks/useLogin';
 import { LOGIN } from './lib/constants';
 import { regForm, regFormTitle, regFormWrapper } from './styles';
 
-
 export const LoginForm = () => {
   const { control, isSubmitting, handleSubmit, onSubmit } = useLogin();
 

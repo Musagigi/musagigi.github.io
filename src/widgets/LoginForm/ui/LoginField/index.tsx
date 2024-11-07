@@ -18,7 +18,7 @@ export const LoginField = ({
   label,
   type,
   autoFocus,
-  required
+  required,
 }: TLoginField) => {
   const {
     field,
